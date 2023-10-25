@@ -1,6 +1,7 @@
 let backgroundImg;
 let suit1Img, suit2Img;
 let suit1, suit2;
+let frankCenter;
 
 function preload() {
     backgroundImg = loadImage("backgroundImg.png");
@@ -10,6 +11,7 @@ function preload() {
 
 function setup() {
     new Canvas(1436,727);
+    frankCenter = createVector(133,420);
 
     suit1 = new Sprite();
     suit1.img = suit1Img;
@@ -32,5 +34,8 @@ function draw() {
 
     //snap into position
 
-    // if (dist(suit1.x,suit.y))
+    if (dist(suit1.x,suit1.y,frankCenter.x,frankCenter.y) < 20) {
+        console.log("wearing suit1");
+    }
+
 }
