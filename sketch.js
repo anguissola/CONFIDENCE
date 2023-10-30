@@ -11,7 +11,7 @@ function preload() {
 
 function setup() {
     new Canvas(1436,727);
-    frankCenter = createVector(133,420);
+    frankCenter = createVector(460,450);
 
     suit1 = new Sprite();
     suit1.img = suit1Img;
@@ -36,6 +36,7 @@ function draw() {
 
     if (dist(suit1.x,suit1.y,frankCenter.x,frankCenter.y) < 20) {
         console.log("wearing suit1");
+        suit1.position = frankCenter;
     }
 
 }
