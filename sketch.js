@@ -1,10 +1,13 @@
-let backgroundImg;
+let backgroundImages = [];
 let suit1Img, suit2Img;
 let suit1, suit2;
 let frankCenter;
+let whichBackgroundImage = 0;
 
 function preload() {
-    backgroundImg = loadImage("backgroundImg.png");
+    // load images into the array called backgroundImages
+    backgroundImages[0] = loadImage("backgroundImg.png");
+    backgroundImages[1] = loadImage("clouds.jpg");
     suit1Img = loadImage("suitImg.png");
     suit2Img = loadImage("suit2Img.png");
 }
@@ -21,8 +24,8 @@ function setup() {
 
 function draw() {
     clear();
-    image(backgroundImg,0,0)
-
+    image(backgroundImages[whichBackgroundImage], 0, 0);
+    
     //handle dragging    
     if (suit1.mouse.dragging()) {
         suit1.moveTowards(
@@ -32,11 +35,15 @@ function draw() {
         console.log("dragging suit1")
     }
 
-    //snap into position
+    //snap into position + trigger message
 
     if (dist(suit1.x,suit1.y,frankCenter.x,frankCenter.y) < 20) {
         console.log("wearing suit1");
-        suit1.position = frankCenter;
+        suit1.position = createVector(frankCenter.x, frankCenter.y);
+        text("here!", 210, 150);
+        whichBackgroundImage = 1;
+    } else {
+        whichBackgroundImage = 0;
     }
 
 }
