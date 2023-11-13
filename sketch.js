@@ -1,49 +1,59 @@
 let backgroundImages = [];
-let suit1Img, suit2Img;
-let suit1, suit2;
-let frankCenter;
 let whichBackgroundImage = 0;
+let whiteShirtImg, suit2Img;
+let whiteShirt, suit2;
+let frankCenter;
+let mySound;
 
 function preload() {
     // load images into the array called backgroundImages
-    backgroundImages[0] = loadImage("backgroundImg.png");
+    backgroundImages[0] = loadImage("backgroundflat.png");
     backgroundImages[1] = loadImage("clouds.jpg");
-    suit1Img = loadImage("suitImg.png");
+    myGuy = loadImage("base.png");
+    whiteShirtImg = loadImage("whiteShirt.png");
     suit2Img = loadImage("suit2Img.png");
+    soundFormats("flac", "mp3", "ogg", "wav");
+    mySound=loadSound("rise.wav");
 }
 
 function setup() {
     new Canvas(1436,727);
-    frankCenter = createVector(460,450);
+    frankCenter = createVector(455,425);
 
-    suit1 = new Sprite();
-    suit1.img = suit1Img;
-    suit1.position = createVector(750,450);
-    suit1.drag = 10;
+    whiteShirt = new Sprite();
+    whiteShirt.img = whiteShirtImg;
+    whiteShirt.position = createVector(750,420);
+    whiteShirt.drag = 10;
 }
 
 function draw() {
     clear();
     image(backgroundImages[whichBackgroundImage], 0, 0);
+    image(myGuy, 410, 70);
     
     //handle dragging    
-    if (suit1.mouse.dragging()) {
-        suit1.moveTowards(
-            mouseX + suit1.mouse.x,
-            mouseY +suit1.mouse.y,
+    if (whiteShirt.mouse.dragging()) {
+        whiteShirt.moveTowards(
+            mouseX + whiteShirt.mouse.x,
+            mouseY +whiteShirt.mouse.y,
             1)
-        console.log("dragging suit1")
+        console.log("dragging whiteShirt")
     }
 
     //snap into position + trigger message
 
-    if (dist(suit1.x,suit1.y,frankCenter.x,frankCenter.y) < 20) {
-        console.log("wearing suit1");
-        suit1.position = createVector(frankCenter.x, frankCenter.y);
-        text("here!", 210, 150);
+    if (dist(whiteShirt.x,whiteShirt.y,frankCenter.x,frankCenter.y) < 20) {
+        console.log("wearing whiteShirt");
+        whiteShirt.position = createVector(frankCenter.x, frankCenter.y);
+        text("here!", 210, 80);
         whichBackgroundImage = 1;
+      
     } else {
         whichBackgroundImage = 0;
     }
 
+}
+
+function mousePressed() {
+    mySound.play();
 }
