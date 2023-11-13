@@ -17,9 +17,9 @@ function preload() {
     whiteShirtImg = loadImage("whiteShirt.png");
     whitePantsImg = loadImage("whitePants.png");
     redJacketImg = loadImage("redJacket.png");
-    // brownPantsImg = loadImage("brownPants.png");
-    // sweaterImg = loadImage("sweater.png");
-    // blackPantsImg = loadImage("blackPants.png");
+    brownPantsImg = loadImage("brownPants.png");
+    sweaterImg = loadImage("sweater.png");
+    blackPantsImg = loadImage("blackPants.png");
     // blackShoesImg = loadImage("blackShoes.png");
     // shortBootsImg = loadImage ("shortBoots.png");
     // tallBootsImg = loadImage ("tallBoots.png");
@@ -39,20 +39,48 @@ function setup() {
 
     whitePants = new Sprite();
     whitePants.img = whitePantsImg;
-    whitePants.position = createVector(750,620);
+    whitePants.position = createVector(800,520);
     whitePants.drag = 10;
     whitePants.rotationSpeed=0;
     whiteShirt.overlaps(whitePants);
 
     redJacket = new Sprite();
     redJacket.img = redJacketImg;
-    redJacket.position = createVector(850,420);
+    redJacket.position = createVector(990,330);
     redJacket.drag = 10;
     redJacket.rotationSpeed = 0;
     redJacket.overlaps(whiteShirt);
     redJacket.overlaps(whitePants);
 
+    brownPants = new Sprite ();
+    brownPants.img = brownPantsImg;
+    brownPants.position = createVector(980, 470);
+    brownPants.drag = 10;
+    brownPants.rotationSpeed = 0;
+    whiteShirt.overlaps(brownPants);
+    brownPants.overlaps(whitePants);
+    redJacket.overlaps(brownPants);
   
+    sweater = new Sprite ();
+    sweater.img = sweaterImg;
+    sweater.position = createVector(1200, 300);
+    sweater.drag = 10;
+    sweater.rotationSpeed = 0;
+    whiteShirt.overlaps(sweater);
+    sweater.overlaps(whitePants);
+    sweater.overlaps(redJacket);
+    sweater.overlaps(brownPants);
+
+    blackPants = new Sprite ();
+    blackPants.img = blackPantsImg;
+    blackPants.position = createVector(1200, 500);
+    blackPants.drag = 10;
+    blackPants.rotationSpeed = 0;
+    whiteShirt.overlaps(blackPants);
+    blackPants.overlaps(whitePants);
+    blackPants.overlaps(redJacket);
+    blackPants.overlaps(brownPants);
+    blackPants.overlaps(sweater);
 
 
 }
@@ -87,6 +115,32 @@ function draw() {
             1)
         console.log("dragging redJacket")
     }
+
+    if (brownPants.mouse.dragging()) {
+        brownPants.moveTowards(
+            mouseX + brownPants.mouse.x,
+            mouseY +brownPants.mouse.y,
+            1)
+        console.log("dragging brownPants")
+    }
+
+    if (sweater.mouse.dragging()) {
+        sweater.moveTowards(
+            mouseX + sweater.mouse.x,
+            mouseY +sweater.mouse.y,
+            1)
+        console.log("dragging sweater")
+    }
+
+    
+    if (blackPants.mouse.dragging()) {
+        blackPants.moveTowards(
+            mouseX + blackPants.mouse.x,
+            mouseY +blackPants.mouse.y,
+            1)
+        console.log("dragging blackPants")
+    }
+
 
     //snap into position + trigger message
 
