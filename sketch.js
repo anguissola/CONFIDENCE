@@ -34,29 +34,25 @@ function setup() {
     whiteShirt.img = whiteShirtImg;
     whiteShirt.position = createVector(750,420);
     whiteShirt.drag = 10;
+    whiteShirt.rotationSpeed=0;
+
 
     whitePants = new Sprite();
     whitePants.img = whitePantsImg;
     whitePants.position = createVector(750,620);
     whitePants.drag = 10;
-  
-
-    // whiteShirt.layer = 1;
-    // whitePants.layer = 2;
-    // redJacket.layer = 3;
+    whitePants.rotationSpeed=0;
     whiteShirt.overlaps(whitePants);
-
 
     redJacket = new Sprite();
     redJacket.img = redJacketImg;
     redJacket.position = createVector(850,420);
-
+    redJacket.drag = 10;
+    redJacket.rotationSpeed = 0;
     redJacket.overlaps(whiteShirt);
     redJacket.overlaps(whitePants);
 
-    whiteShirt.rotationSpeed=0;
-    whitePants.rotationSpeed=0;
-    redJacket.rotationSpeed = 0;
+  
 
 
 }
@@ -103,6 +99,7 @@ function draw() {
     } else {
         whichBackgroundImage = 0;
     }
+
 
 }
 
