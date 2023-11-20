@@ -65,12 +65,6 @@ function setup() {
     whiteShirt.drag = 10;
     whiteShirt.rotationSpeed=0;
 
-    whitePants = new Sprite();
-    whitePants.img = whitePantsImg;
-    whitePants.position = createVector(800,520);
-    whitePants.drag = 10;
-    whitePants.rotationSpeed=0;
-    whiteShirt.overlaps(whitePants);
 
     sweater = new Sprite ();
     sweater.img = sweaterImg;
@@ -78,7 +72,6 @@ function setup() {
     sweater.drag = 10;
     sweater.rotationSpeed = 0;
     whiteShirt.overlaps(sweater);
-    sweater.overlaps(whitePants);
 
     brownPants = new Sprite ();
     brownPants.img = brownPantsImg;
@@ -86,7 +79,6 @@ function setup() {
     brownPants.drag = 10;
     brownPants.rotationSpeed = 0;
     whiteShirt.overlaps(brownPants);
-    brownPants.overlaps(whitePants);
     sweater.overlaps(brownPants);
 
     blackPants = new Sprite ();
@@ -95,29 +87,16 @@ function setup() {
     blackPants.drag = 10;
     blackPants.rotationSpeed = 0;
     whiteShirt.overlaps(blackPants);
-    blackPants.overlaps(whitePants);
     blackPants.overlaps(brownPants);
     blackPants.overlaps(sweater);
 
-    redJacket = new Sprite();
-    redJacket.img = redJacketImg;
-    redJacket.position = createVector(990,330);
-    redJacket.drag = 10;
-    redJacket.rotationSpeed = 0;
-    redJacket.overlaps(whiteShirt);
-    redJacket.overlaps(whitePants);
-    redJacket.overlaps(brownPants);
-    redJacket.overlaps(sweater);
-    redJacket.overlaps(blackPants);
-
+   
     blackShoes = new Sprite();
     blackShoes.img = blackShoesImg;
     blackShoes.position = createVector (110, 500);
     blackShoes.drag = 10;
     blackShoes.rotationSpeed = 0;
     blackShoes.overlaps(whiteShirt);
-    blackShoes.overlaps(whitePants);
-    blackShoes.overlaps(redJacket);
     blackShoes.overlaps(brownPants);
     blackShoes.overlaps(sweater);
     blackShoes.overlaps(blackPants);
@@ -129,8 +108,6 @@ function setup() {
     shortBoots.rotationSpeed = 0;
     shortBoots.overlaps(blackShoes);
     shortBoots.overlaps(whiteShirt);
-    shortBoots.overlaps(whitePants);
-    shortBoots.overlaps(redJacket);
     shortBoots.overlaps(brownPants);
     shortBoots.overlaps(sweater);
     shortBoots.overlaps(blackPants);
@@ -145,11 +122,38 @@ function setup() {
     tallBoots.overlaps(shortBoots);
     tallBoots.overlaps(blackShoes);
     tallBoots.overlaps(whiteShirt);
-    whitePants.overlaps(tallBoots);
-    tallBoots.overlaps(redJacket);
     tallBoots.overlaps(brownPants);
     tallBoots.overlaps(sweater);
     tallBoots.overlaps(blackPants);
+
+    whitePants = new Sprite();
+    whitePants.img = whitePantsImg;
+    whitePants.position = createVector(800,520);
+    whitePants.drag = 10;
+    whitePants.rotationSpeed=0;
+    whiteShirt.overlaps(whitePants);
+    whitePants.overlaps(tallBoots);
+    shortBoots.overlaps(whitePants);
+    blackPants.overlaps(whitePants);
+    brownPants.overlaps(whitePants);
+    sweater.overlaps(whitePants);
+    blackShoes.overlaps(whitePants);
+
+    redJacket = new Sprite();
+    redJacket.img = redJacketImg;
+    redJacket.position = createVector(990,330);
+    redJacket.drag = 10;
+    redJacket.rotationSpeed = 0;
+    redJacket.overlaps(whiteShirt);
+    redJacket.overlaps(brownPants);
+    redJacket.overlaps(sweater);
+    redJacket.overlaps(blackPants);
+    redJacket.overlaps(whitePants);
+    tallBoots.overlaps(redJacket);
+    shortBoots.overlaps(redJacket);
+    blackShoes.overlaps(redJacket);
+
+
 
 }
 
