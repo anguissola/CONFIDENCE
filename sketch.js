@@ -8,11 +8,11 @@ let textBox;
 
 //establishing position for snapping
 let frankCenter;
+let frankCenter2;
 let frankPants;
 let frankBrownPants;
 let frankBlackPants;
 let frankRedJacket;
-let frankSweater;
 
 
 function preload() {
@@ -41,11 +41,12 @@ function setup() {
 
     //snapping position p2
     frankCenter = createVector(455,425);
+    frankCenter2 = createVector(530,300);
     frankPants = createVector(505, 535);
     frankBrownPants = createVector(528, 458);
     frankBlackPants = createVector(525,520);
     frankRedJacket = createVector(530,338);
-    frankSweater = createVector(455,450);
+
 
     whiteShirt = new Sprite();
     whiteShirt.img = whiteShirtImg;
@@ -176,11 +177,11 @@ function draw() {
         text("here!", 210, 80);
       }
 
-    if (dist(sweater.x,sweater.y,frankSweater.x,frankSweater.y) < 20) {
-        console.log("wearing sweater");
-        sweater.position = createVector(frankSweater.x, frankSweater.y);
-        text("sweater here!", 210, 80);
-      }
+    if (dist(sweater.x,sweater.y,frankCenter2.x,frankCenter2.y) < 20) {
+        console.log("wearing sweater!");
+        sweater.position = createVector(frankCenter2.x,frankCenter2.y);
+        text("sweater here!!", 210, 80);
+    }
 
     if (dist(whitePants.x,whitePants.y,frankPants.x,frankPants.y) < 20) {
         console.log("wearing whitePants");
