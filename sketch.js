@@ -5,8 +5,15 @@ let whiteShirt, whitePants;
 let redJacket; 
 let brownPants, sweater, blackPants, blackShoes, shortBoots, tallBoots;
 let textBox;
+
+//establishing position for snapping
 let frankCenter;
-let mySound;
+let frankPants;
+let frankBrownPants;
+let frankBlackPants;
+let frankRedJacket;
+let frankSweater;
+
 
 function preload() {
     // load images into the array called backgroundImages
@@ -24,18 +31,27 @@ function preload() {
     // shortBootsImg = loadImage ("shortBoots.png");
     // tallBootsImg = loadImage ("tallBoots.png");
     // suit2Img = loadImage("suit2Img.png");
+
+//triggered images
+    memory1= loadImage("hat.png");
 }
 
 function setup() {
     new Canvas(1436,727);
+
+    //snapping position p2
     frankCenter = createVector(455,425);
+    frankPants = createVector(505, 535);
+    frankBrownPants = createVector(528, 458);
+    frankBlackPants = createVector(525,520);
+    frankRedJacket = createVector(530,338);
+    frankSweater = createVector(455,450);
 
     whiteShirt = new Sprite();
     whiteShirt.img = whiteShirtImg;
     whiteShirt.position = createVector(750,420);
     whiteShirt.drag = 10;
     whiteShirt.rotationSpeed=0;
-
 
     whitePants = new Sprite();
     whitePants.img = whitePantsImg;
@@ -44,13 +60,13 @@ function setup() {
     whitePants.rotationSpeed=0;
     whiteShirt.overlaps(whitePants);
 
-    redJacket = new Sprite();
-    redJacket.img = redJacketImg;
-    redJacket.position = createVector(990,330);
-    redJacket.drag = 10;
-    redJacket.rotationSpeed = 0;
-    redJacket.overlaps(whiteShirt);
-    redJacket.overlaps(whitePants);
+    sweater = new Sprite ();
+    sweater.img = sweaterImg;
+    sweater.position = createVector(1200, 300);
+    sweater.drag = 10;
+    sweater.rotationSpeed = 0;
+    whiteShirt.overlaps(sweater);
+    sweater.overlaps(whitePants);
 
     brownPants = new Sprite ();
     brownPants.img = brownPantsImg;
@@ -59,16 +75,6 @@ function setup() {
     brownPants.rotationSpeed = 0;
     whiteShirt.overlaps(brownPants);
     brownPants.overlaps(whitePants);
-    redJacket.overlaps(brownPants);
-  
-    sweater = new Sprite ();
-    sweater.img = sweaterImg;
-    sweater.position = createVector(1200, 300);
-    sweater.drag = 10;
-    sweater.rotationSpeed = 0;
-    whiteShirt.overlaps(sweater);
-    sweater.overlaps(whitePants);
-    sweater.overlaps(redJacket);
     sweater.overlaps(brownPants);
 
     blackPants = new Sprite ();
@@ -78,10 +84,19 @@ function setup() {
     blackPants.rotationSpeed = 0;
     whiteShirt.overlaps(blackPants);
     blackPants.overlaps(whitePants);
-    blackPants.overlaps(redJacket);
     blackPants.overlaps(brownPants);
     blackPants.overlaps(sweater);
 
+    redJacket = new Sprite();
+    redJacket.img = redJacketImg;
+    redJacket.position = createVector(990,330);
+    redJacket.drag = 10;
+    redJacket.rotationSpeed = 0;
+    redJacket.overlaps(whiteShirt);
+    redJacket.overlaps(whitePants);
+    redJacket.overlaps(brownPants);
+    redJacket.overlaps(sweater);
+    redJacket.overlaps(blackPants);
 
 }
 
@@ -142,21 +157,51 @@ function draw() {
     }
 
 
-    //snap into position + trigger message
+    //snap into position p3 --> trigger message
 
     if (dist(whiteShirt.x,whiteShirt.y,frankCenter.x,frankCenter.y) < 20) {
         console.log("wearing whiteShirt");
         whiteShirt.position = createVector(frankCenter.x, frankCenter.y);
         text("here!", 210, 80);
+        image(memory1, 210, 80);
         whichBackgroundImage = 1;
       
     } else {
         whichBackgroundImage = 0;
     }
 
+    if (dist(redJacket.x,redJacket.y,frankRedJacket.x,frankRedJacket.y) < 20) {
+        console.log("wearing redJacket");
+        redJacket.position = createVector(frankRedJacket.x, frankRedJacket.y);
+        text("here!", 210, 80);
+      }
+
+    if (dist(sweater.x,sweater.y,frankSweater.x,frankSweater.y) < 20) {
+        console.log("wearing sweater");
+        sweater.position = createVector(frankSweater.x, frankSweater.y);
+        text("sweater here!", 210, 80);
+      }
+
+    if (dist(whitePants.x,whitePants.y,frankPants.x,frankPants.y) < 20) {
+        console.log("wearing whitePants");
+        whitePants.position = createVector(frankPants.x,frankPants.y);
+        text("pants here!", 210, 180);
+    }
+
+    if (dist(brownPants.x,brownPants.y,frankBrownPants.x,frankBrownPants.y) < 20) {
+        console.log("wearing brownPants");
+        brownPants.position = createVector(frankBrownPants.x,frankBrownPants.y);
+        text("brown pants here!", 210, 180);
+    }
+
+    if (dist(blackPants.x,blackPants.y,frankBlackPants.x,frankBlackPants.y) < 20) {
+        console.log("wearing brownPants");
+        blackPants.position = createVector(frankBlackPants.x,frankBlackPants.y);
+        text("black pants here!", 210, 180);
+    }
+
+
+    
 
 }
 
-function mousePressed() {
-    mySound.play();
-}
