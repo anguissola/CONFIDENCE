@@ -1,5 +1,7 @@
 let backgroundImages = [];
 let whichBackgroundImage = 0;
+
+//these variables are a mess but everytime i touch something it all breaks, so i'm leaving the jenga tower be
 let whiteShirtImg, suit2Img;
 let whiteShirt, whitePants;
 let redJacket; 
@@ -13,25 +15,31 @@ let frankPants;
 let frankBrownPants;
 let frankBlackPants;
 let frankRedJacket;
+let frankBlackShoes;
+let frankShortBoots;
+let frankTallBoots;
 
 
 function preload() {
-    // load images into the array called backgroundImages
+    // preloading backgrounds
     backgroundImages[0] = loadImage("backgroundflat.png");
     backgroundImages[1] = loadImage("clouds.jpg");
+
+    //preloading mannequin and text box
     myGuy = loadImage("base.png");
     textBox = loadImage ("text box.png");
+
+    //preloading clothing images
     whiteShirtImg = loadImage("whiteShirt.png");
     whitePantsImg = loadImage("whitePants.png");
     redJacketImg = loadImage("redJacket.png");
     brownPantsImg = loadImage("brownPants.png");
     sweaterImg = loadImage("sweater.png");
     blackPantsImg = loadImage("blackPants.png");
-    // blackShoesImg = loadImage("blackShoes.png");
-    // shortBootsImg = loadImage ("shortBoots.png");
-    // tallBootsImg = loadImage ("tallBoots.png");
-    // suit2Img = loadImage("suit2Img.png");
-
+    blackShoesImg = loadImage("blackShoes.png");
+    shortBootsImg = loadImage ("shortBoots.png");
+    tallBootsImg = loadImage ("tallBoots.png");
+ 
 //triggered images
     memory1= loadImage("hat.png");
 }
@@ -39,15 +47,18 @@ function preload() {
 function setup() {
     new Canvas(1436,727);
 
-    //snapping position p2
+    //snapping position p2 --> creating vectors
     frankCenter = createVector(455,425);
     frankCenter2 = createVector(530,300);
     frankPants = createVector(505, 535);
     frankBrownPants = createVector(528, 458);
     frankBlackPants = createVector(525,520);
     frankRedJacket = createVector(530,338);
+    frankBlackShoes = createVector(485, 680);
+    frankShortBoots = createVector(482, 670);
+    frankTallBoots = createVector(490, 645);
 
-
+    //creating clothes in "closet"
     whiteShirt = new Sprite();
     whiteShirt.img = whiteShirtImg;
     whiteShirt.position = createVector(750,420);
@@ -99,7 +110,51 @@ function setup() {
     redJacket.overlaps(sweater);
     redJacket.overlaps(blackPants);
 
+    blackShoes = new Sprite();
+    blackShoes.img = blackShoesImg;
+    blackShoes.position = createVector (110, 500);
+    blackShoes.drag = 10;
+    blackShoes.rotationSpeed = 0;
+    blackShoes.overlaps(whiteShirt);
+    blackShoes.overlaps(whitePants);
+    blackShoes.overlaps(redJacket);
+    blackShoes.overlaps(brownPants);
+    blackShoes.overlaps(sweater);
+    blackShoes.overlaps(blackPants);
+
+    shortBoots = new Sprite();
+    shortBoots.img = shortBootsImg;
+    shortBoots.position = createVector (180, 400);
+    shortBoots.drag = 10;
+    shortBoots.rotationSpeed = 0;
+    shortBoots.overlaps(blackShoes);
+    shortBoots.overlaps(whiteShirt);
+    shortBoots.overlaps(whitePants);
+    shortBoots.overlaps(redJacket);
+    shortBoots.overlaps(brownPants);
+    shortBoots.overlaps(sweater);
+    shortBoots.overlaps(blackPants);
+
+
+    tallBoots = new Sprite();
+    tallBoots.img = tallBootsImg;
+    tallBoots.position = createVector (300, 500);
+    tallBoots.drag = 10;
+    tallBoots.rotationSpeed = 0;
+    tallBoots.overlaps(blackShoes);
+    tallBoots.overlaps(shortBoots);
+    tallBoots.overlaps(blackShoes);
+    tallBoots.overlaps(whiteShirt);
+    whitePants.overlaps(tallBoots);
+    tallBoots.overlaps(redJacket);
+    tallBoots.overlaps(brownPants);
+    tallBoots.overlaps(sweater);
+    tallBoots.overlaps(blackPants);
+
 }
+
+//now onto dragging
+
 
 function draw() {
     clear();
@@ -157,6 +212,30 @@ function draw() {
         console.log("dragging blackPants")
     }
 
+    if (blackShoes.mouse.dragging()) {
+        blackShoes.moveTowards(
+            mouseX + blackShoes.mouse.x,
+            mouseY +blackShoes.mouse.y,
+            1)
+        console.log("dragging blackShoes")
+    }
+
+    if (shortBoots.mouse.dragging()) {
+        shortBoots.moveTowards(
+            mouseX + shortBoots.mouse.x,
+            mouseY +shortBoots.mouse.y,
+            1)
+        console.log("dragging shortBoots")
+    }
+
+    if (tallBoots.mouse.dragging()) {
+        tallBoots.moveTowards(
+            mouseX + tallBoots.mouse.x,
+            mouseY +tallBoots.mouse.y,
+            1)
+        console.log("dragging tallBoots")
+    }
+    
 
     //snap into position p3 --> trigger message
 
@@ -201,6 +280,23 @@ function draw() {
         text("black pants here!", 210, 180);
     }
 
+    if (dist(blackShoes.x,blackShoes.y,frankBlackShoes.x,frankBlackShoes.y) < 20) {
+        console.log("wearing blackShoes");
+        blackShoes.position = createVector(frankBlackShoes.x,frankBlackShoes.y);
+        text("black shoes here!", 210, 180);
+    }
+
+    if (dist(tallBoots.x,tallBoots.y,frankTallBoots.x,frankTallBoots.y) < 20) {
+        console.log("wearing tall boots");
+        tallBoots.position = createVector(frankTallBoots.x,frankTallBoots.y);
+        text("tall boots shoes here!", 210, 180);
+    }
+
+    if (dist(shortBoots.x,shortBoots.y,frankShortBoots.x,frankShortBoots.y) < 20) {
+        console.log("wearing shortBoots");
+        shortBoots.position = createVector(frankShortBoots.x,frankShortBoots.y);
+        text("shortBoots shoes here!", 210, 180);
+    }
 
     
 
