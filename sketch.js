@@ -12,6 +12,13 @@ let hat;
 let textBox;
 let display1, display2, display3;
 
+//establishing 
+
+//establishing shoe set pieces
+let camera, bigBaby, necklace;
+
+
+
 //establishing position for snapping
 let frankCenter;
 let frankCenter2;
@@ -51,6 +58,9 @@ function preload() {
     display1= loadImage("display0.png");
     display2= loadImage("display1.png");
     display3=loadImage("display2.png");
+    camera=loadImage("camera.png");
+    bigBaby=loadImage("bigBaby.png");
+    necklace=loadImage("textImg.png");
 }
 
 function setup() {
@@ -294,7 +304,6 @@ function draw() {
     if (dist(hat.x,hat.y,frankHat.x,frankHat.y) < 20) {
         console.log("wearing hat!");
         hat.position = createVector(frankHat.x,frankHat.y);    
-        image(display3, 30,55);
         whichBackgroundImage = 2;
     //   } else {
     //     whichBackgroundImage = 0;
@@ -309,31 +318,29 @@ function draw() {
     if (dist(brownPants.x,brownPants.y,frankBrownPants.x,frankBrownPants.y) < 20) {
         console.log("wearing brownPants");
         brownPants.position = createVector(frankBrownPants.x,frankBrownPants.y);
-        text("brown pants here!", 210, 180);
     }
 
     if (dist(blackPants.x,blackPants.y,frankBlackPants.x,frankBlackPants.y) < 20) {
         console.log("wearing brownPants");
         blackPants.position = createVector(frankBlackPants.x,frankBlackPants.y);
-        text("black pants here!", 210, 180);
     }
 
     if (dist(blackShoes.x,blackShoes.y,frankBlackShoes.x,frankBlackShoes.y) < 20) {
         console.log("wearing blackShoes");
         blackShoes.position = createVector(frankBlackShoes.x,frankBlackShoes.y);
-        text("black shoes here!", 210, 180);
+        image(necklace, 690,525);
     }
 
     if (dist(tallBoots.x,tallBoots.y,frankTallBoots.x,frankTallBoots.y) < 20) {
         console.log("wearing tall boots");
         tallBoots.position = createVector(frankTallBoots.x,frankTallBoots.y);
-        text("tall boots shoes here!", 210, 180);
+        image(bigBaby, 652,0)
     }
 
     if (dist(shortBoots.x,shortBoots.y,frankShortBoots.x,frankShortBoots.y) < 20) {
         console.log("wearing shortBoots");
         shortBoots.position = createVector(frankShortBoots.x,frankShortBoots.y);
-        text("shortBoots shoes here!", 210, 180);
+        image(camera, 0,0);
     }
 
     
