@@ -6,7 +6,11 @@ let whiteShirtImg, suit2Img;
 let whiteShirt, whitePants;
 let redJacket; 
 let brownPants, sweater, blackPants, blackShoes, shortBoots, tallBoots;
+let hat;
+
+//establishing textbox and alternatives
 let textBox;
+let display1, display2, display3;
 
 //establishing position for snapping
 let frankCenter;
@@ -18,12 +22,14 @@ let frankRedJacket;
 let frankBlackShoes;
 let frankShortBoots;
 let frankTallBoots;
+let frankHat;
 
 
 function preload() {
     // preloading backgrounds
     backgroundImages[0] = loadImage("backgroundflat.png");
     backgroundImages[1] = loadImage("clouds.jpg");
+    backgroundImages[2] = loadImage("angel.png");
 
     //preloading mannequin and text box
     myGuy = loadImage("base.png");
@@ -39,9 +45,12 @@ function preload() {
     blackShoesImg = loadImage("blackShoes.png");
     shortBootsImg = loadImage ("shortBoots.png");
     tallBootsImg = loadImage ("tallBoots.png");
+    hatImg = loadImage ("hat.png");
  
 //triggered images
-    memory1= loadImage("hat.png");
+    display1= loadImage("display0.png");
+    display2= loadImage("display1.png");
+    display3=loadImage("display2.png");
 }
 
 function setup() {
@@ -57,14 +66,15 @@ function setup() {
     frankBlackShoes = createVector(485, 680);
     frankShortBoots = createVector(482, 670);
     frankTallBoots = createVector(490, 645);
+    frankHat = createVector(530, 90);
 
     //creating clothes in "closet"
+
     whiteShirt = new Sprite();
     whiteShirt.img = whiteShirtImg;
     whiteShirt.position = createVector(750,420);
     whiteShirt.drag = 10;
     whiteShirt.rotationSpeed=0;
-
 
     sweater = new Sprite ();
     sweater.img = sweaterImg;
@@ -153,8 +163,20 @@ function setup() {
     shortBoots.overlaps(redJacket);
     blackShoes.overlaps(redJacket);
 
-
-
+    hat = new Sprite();
+    hat.img = hatImg;
+    hat.position = createVector(200,620);
+    hat.drag = 10;
+    hat.rotationSpeed=0;
+    hat.overlaps(whiteShirt);
+    hat.overlaps(brownPants);
+    hat.overlaps(sweater);
+    hat.overlaps(blackPants);
+    hat.overlaps(whitePants);
+    tallBoots.overlaps(hat);
+    shortBoots.overlaps(hat);
+    blackShoes.overlaps(hat);
+    hat.overlaps(redJacket);
 }
 
 //now onto dragging
@@ -240,30 +262,42 @@ function draw() {
         console.log("dragging tallBoots")
     }
     
+    if (hat.mouse.dragging()) {
+        hat.moveTowards(
+            mouseX + hat.mouse.x,
+            mouseY +hat.mouse.y,
+            1)
+        console.log("dragging hat")
+    }
 
     //snap into position p3 --> trigger message
 
     if (dist(whiteShirt.x,whiteShirt.y,frankCenter.x,frankCenter.y) < 20) {
         console.log("wearing whiteShirt");
         whiteShirt.position = createVector(frankCenter.x, frankCenter.y);
-        text("here!", 210, 80);
-        image(memory1, 210, 80);
-        whichBackgroundImage = 1;
-      
-    } else {
-        whichBackgroundImage = 0;
+        image(display1, 30,55);
     }
 
     if (dist(redJacket.x,redJacket.y,frankRedJacket.x,frankRedJacket.y) < 20) {
         console.log("wearing redJacket");
         redJacket.position = createVector(frankRedJacket.x, frankRedJacket.y);
-        text("here!", 210, 80);
+        image(display2, 30,55);
       }
+
 
     if (dist(sweater.x,sweater.y,frankCenter2.x,frankCenter2.y) < 20) {
         console.log("wearing sweater!");
         sweater.position = createVector(frankCenter2.x,frankCenter2.y);
-        text("sweater here!!", 210, 80);
+        image(display3, 30,55);
+    }
+
+    if (dist(hat.x,hat.y,frankHat.x,frankHat.y) < 20) {
+        console.log("wearing hat!");
+        hat.position = createVector(frankHat.x,frankHat.y);    
+        image(display3, 30,55);
+        whichBackgroundImage = 2;
+    //   } else {
+    //     whichBackgroundImage = 0;
     }
 
     if (dist(whitePants.x,whitePants.y,frankPants.x,frankPants.y) < 20) {
