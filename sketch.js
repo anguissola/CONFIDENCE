@@ -12,7 +12,8 @@ let hat;
 let textBox;
 let display1, display2, display3;
 
-//establishing 
+//establishing pants effects
+let head1, puttyHead, colorHead;
 
 //establishing shoe set pieces
 let camera, bigBaby, necklace;
@@ -52,8 +53,7 @@ function preload() {
     blackShoesImg = loadImage("blackShoes.png");
     shortBootsImg = loadImage ("shortBoots.png");
     tallBootsImg = loadImage ("tallBoots.png");
-    hatImg = loadImage ("hat.png");
- 
+    hatImg = loadImage ("hat.png"); 
 //triggered images
     display1= loadImage("display0.png");
     display2= loadImage("display1.png");
@@ -61,6 +61,9 @@ function preload() {
     camera=loadImage("camera.png");
     bigBaby=loadImage("bigBaby.png");
     necklace=loadImage("textImg.png");
+    head1=loadImage("headSprite.png");
+    puttyHead=loadImage("puttyHead.png");
+    colorHead=loadImage("colorHead.png");
 }
 
 function setup() {
@@ -312,17 +315,30 @@ function draw() {
     if (dist(whitePants.x,whitePants.y,frankPants.x,frankPants.y) < 20) {
         console.log("wearing whitePants");
         whitePants.position = createVector(frankPants.x,frankPants.y);
-        text("pants here!", 210, 180);
+        image(head1, 400,30);
+        image(head1, 450,90);
+        image(head1, 500,150);
+        image(head1, 550,210);
+        image(head1, 600,270);
+        image(head1, 650,330);
+        image(head1, 700,390);
+        image(head1, 750,450);
+        image(head1, 800,510);
+        image(head1, 850,570);
+        image(head1, 900,630);
+        image(head1, 950,690);
     }
 
     if (dist(brownPants.x,brownPants.y,frankBrownPants.x,frankBrownPants.y) < 20) {
         console.log("wearing brownPants");
         brownPants.position = createVector(frankBrownPants.x,frankBrownPants.y);
+        image(puttyHead, 450,70);
     }
 
     if (dist(blackPants.x,blackPants.y,frankBlackPants.x,frankBlackPants.y) < 20) {
         console.log("wearing brownPants");
         blackPants.position = createVector(frankBlackPants.x,frankBlackPants.y);
+        image(colorHead, 483,70);
     }
 
     if (dist(blackShoes.x,blackShoes.y,frankBlackShoes.x,frankBlackShoes.y) < 20) {
