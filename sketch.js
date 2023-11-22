@@ -41,7 +41,7 @@ function preload() {
 
     //preloading mannequin and text box
     myGuy = loadImage("base.png");
-    textBox = loadImage ("text box.png");
+    textBox = loadImage ("secrecyAgreement.png");
 
     //preloading clothing images
     whiteShirtImg = loadImage("whiteShirt.png");
